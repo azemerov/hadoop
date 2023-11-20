@@ -4,13 +4,15 @@ https://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-py
 """
 
 import sys
+import re
 
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
-    line = line.strip()
+    line = line.strip("-_—.,?!\"'`’’“” \t")
     # split the line into words
-    words = line.split()
+    words = re.split("-|_|—|\.|,|\?|!|\"|'|`|’|’|“| |\t", line) #line.split("-_—.,?!\"'`’’“” \t")
+    #words = line.split()
     # increase counters
     for word in words:
         # write the results to STDOUT (standard output);
